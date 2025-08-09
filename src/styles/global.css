@@ -1,0 +1,115 @@
+/* src/styles/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+/* --- PALETA DE COLORES DE LA MARCA --- */
+:root {
+	--navy: #293140;
+	--teal: #4b7c8d;
+	--light-blue: #d4e0e8;
+	--beige: #f5f0e8;
+	--white: #ffffff;
+	--black: #000000; /* Negro puro añadido para máxima legibilidad */
+}
+
+/* --- TEMA OSCURO (por defecto) --- */
+:root {
+	--bg-color: var(--navy);
+	--text-color: var(--beige);
+	--text-secondary-color: var(--light-blue);
+	--card-bg-color: #1f2633;
+	--card-border-color: #3b4554;
+	--card-hover-border-color: var(--teal);
+	--header-bg-color: #1f2633;
+	--switch-bg-color: #1f2633;
+	--switch-active-bg-color: var(--teal);
+}
+
+/* --- TEMA CLARO - CON TEXTO NEGRO --- */
+:root.theme-light {
+	--bg-color: var(--beige);
+	--text-color: var(--black); /* <-- LA CLAVE: El texto principal ahora es negro */
+	--text-secondary-color: #5a6372;
+	--card-bg-color: var(--white);
+	--card-border-color: var(--light-blue);
+	--card-hover-border-color: var(--teal);
+	--header-bg-color: var(--white);
+	--switch-bg-color: var(--light-blue);
+	--switch-active-bg-color: var(--navy);
+}
+
+/* --- ESTILOS BASE --- */
+html {
+	font-family: 'Poppins', sans-serif;
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	margin: 0;
+	padding: 2rem;
+	box-sizing: border-box;
+}
+
+/* --- AJUSTES GLOBALES PARA ELEMENTOS ESPECÍFICOS --- */
+.instruccion {
+	background: var(--teal);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.quiz-card:hover {
+	border-color: var(--card-hover-border-color);
+}
+
+.modal-content, .fab-toggle {
+	background-color: var(--card-bg-color);
+}
+
+.form-group input:focus {
+	border-color: var(--card-hover-border-color);
+	box-shadow: 0 0 0 3px color-mix(in srgb, var(--card-hover-border-color) 40%, transparent);
+}
+
+.submit-button {
+	background-image: linear-gradient(45deg, var(--teal), var(--navy));
+}
+
+.slider {
+	background-color: var(--switch-bg-color);
+}
+input:checked + .slider {
+	background-color: var(--switch-active-bg-color);
+}
+
+/* --- AJUSTES PARA TEMA CLARO (Neumorfismo Sutil) --- */
+.theme-light .quiz-card,
+.theme-light .modal-content,
+.theme-light .fab-toggle {
+	box-shadow: 6px 6px 12px #141414, -6px -6px 12px var(--white); /* Sombra ajustada al beige */
+	border-color: transparent;
+}
+.theme-light .quiz-card:hover {
+	box-shadow: 4px 4px 8px #d5d0ca, -4px -4px 8px var(--white);
+	transform: translateY(2px);
+}
+.theme-light .quiz-icon {
+	color: var(--teal);
+}
+.theme-light .modal-icon {
+	background-color: var(--light-blue);
+	border-color: var(--card-bg-color);
+}
+.theme-light .modal-close-button {
+	background-color: var(--light-blue);
+	border: 1px solid #c8d3db;
+}
+.theme-light .form-group input {
+	background-color: var(--light-blue);
+	box-shadow: inset 3px 3px 6px #070707, inset -3px -3px 6px var(--white);
+	border-color: transparent;
+}

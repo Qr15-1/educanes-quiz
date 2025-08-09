@@ -1,0 +1,29 @@
+---
+// src/pages/resultado.astro (DISEÑO PREMIUM)
+import Layout from '../layouts/Layout.astro';
+import '../styles/resultado.css'; // ¡Un nuevo archivo de estilos!
+---
+
+<Layout title="Tu Resultado Personalizado">
+  <main class="results-page-container">
+    <div class="results-content">
+      
+      <!-- Estos elementos serán rellenados por nuestro nuevo script -->
+      <div id="results-icon" class="results-icon"></div>
+      <h1 id="results-title" class="results-title"></h1>
+      <p id="results-text" class="results-text-content"></p>
+      
+      <!-- Un divisor visual para separar la introducción de los consejos -->
+      <div class="divider"></div>
+
+      <h2 class="recommendations-title">Tus consejos personalizados:</h2>
+      <ul id="results-recommendations" class="results-recommendations-list"></ul>
+
+      <a href="/" class="nav-button">Hacer otro quiz</a>
+
+    </div>
+  </main>
+</Layout>
+
+<!-- Cargamos el script dedicado solo a esta página -->
+<script src="../scripts/resultado-logic.js"></script>

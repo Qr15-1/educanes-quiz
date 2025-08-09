@@ -1,0 +1,104 @@
+/* src/styles/resultado.css (DISEÑO PREMIUM) */
+
+.results-page-container {
+  display: flex;
+  justify-content: center;
+  padding: 5vh 1.5rem; /* Más espacio vertical para respirar */
+  box-sizing: border-box;
+}
+
+.results-content {
+  width: 100%;
+  max-width: 650px; /* Un poco más ancho para el formato de informe */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.results-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+}
+
+.results-title {
+  font-size: 2.5rem; /* Un poco más pequeño para elegancia */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.results-text-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 580px; /* Líneas de texto más cómodas de leer */
+  margin-bottom: 3rem;
+}
+
+.divider {
+    width: 100px;
+    height: 4px;
+    background-color: var(--border-color);
+    border-radius: 2px;
+    margin-bottom: 3rem;
+}
+
+.recommendations-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+}
+
+.results-recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Espacio entre las tarjetas de consejo */
+  text-align: left;
+}
+
+/* El nuevo estilo de "tarjeta" para cada consejo */
+.results-recommendations-list li {
+  background-color: var(--background-card);
+  padding: 1.5rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  font-size: 1rem;
+  line-height: 1.6;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.results-recommendations-list li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.results-recommendations-list li strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-color-light); /* Un color de acento para el título */
+}
+
+.nav-button {
+  padding: 1rem 2.5rem;
+  border-radius: 50px; /* Botón tipo "píldora" */
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  background-color: var(--accent-color);
+  color: white;
+  margin-top: 1rem;
+}
+.nav-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(var(--accent-color-rgb), 0.3);
+}

@@ -1,0 +1,72 @@
+/* src/styles/fab.css */
+
+.fab-container {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	display: flex;
+	flex-direction: column-reverse; /* Cambiamos la dirección para que WhatsApp salga arriba */
+	align-items: center; /* Centramos los botones */
+	gap: 1rem;
+	z-index: 999;
+}
+
+.fab-button {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	text-decoration: none;
+	color: white;
+	transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Transición con rebote */
+	border: none; /* Quitamos bordes para los botones de acción */
+	cursor: pointer;
+}
+
+.fab-button:hover {
+	transform: scale(1.1);
+}
+
+.fab-button svg {
+	width: 28px;
+	height: 28px;
+	transition: transform 0.3s ease; /* Animación para la rotación del icono + */
+}
+
+/* --- Botón principal (el que se ve siempre) --- */
+.fab-toggle {
+	background-color: #4f46e5; /* Color de la marca */
+	z-index: 1001; /* Siempre por encima del de WhatsApp */
+}
+/* Cuando el menú está abierto, el icono + rota para ser una x */
+.fab-container.open .fab-toggle svg {
+	transform: rotate(45deg);
+}
+
+/* --- Botón de WhatsApp (oculto por defecto) --- */
+.fab-whatsapp {
+	background-color: #25D366;
+	transform: scale(0); /* Oculto por defecto */
+	opacity: 0;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+	position: absolute; /* Para que la animación sea fluida */
+	bottom: 0;
+}
+/* Cuando el menú está abierto, WhatsApp aparece */
+.fab-container.open .fab-whatsapp {
+	transform: scale(1) translateY(-72px); /* Aparece y se mueve hacia arriba */
+	opacity: 1;
+}
+
+/* --- Estilos para el Tema Claro --- */
+.theme-light .fab-toggle {
+	background-color: #ffffff;
+	border: 1px solid #e5e7eb;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.theme-light .fab-toggle svg {
+	color: #374151;
+}

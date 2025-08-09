@@ -1,0 +1,55 @@
+/* src/styles/form.css */
+.contact-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+}
+
+.form-group label {
+	margin-bottom: 0.5rem;
+	font-size: 0.9rem;
+	font-weight: 500;
+	/* LA CLAVE: Usamos la variable de texto secundario */
+	color: var(--text-secondary-color); 
+	transition: color 0.4s ease; /* Transición suave de color al cambiar de tema */
+}
+
+.form-group input {
+	padding: 0.8rem 1rem;
+	border: 1px solid var(--card-border-color);
+	background-color: var(--card-bg-color);
+	color: var(--text-color);
+	border-radius: 12px;
+	font-size: 1rem;
+	font-family: 'Poppins', sans-serif;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.4s ease;
+}
+
+.form-group input:focus {
+	outline: none;
+	border-color: var(--card-hover-border-color);
+	box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.4);
+}
+
+.submit-button {
+	background-image: linear-gradient(45deg, #4f46e5, #a300ff);
+	color: white;
+	padding: 1rem;
+	border: none;
+	border-radius: 12px;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	margin-top: 1rem;
+}
+
+.submit-button:hover {
+	transform: scale(1.03);
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}

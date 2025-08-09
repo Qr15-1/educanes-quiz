@@ -1,0 +1,42 @@
+---
+// src/pages/quizzes/son-almas-gemelas.astro (CON RESULTADOS INTELIGENTES)
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/quiz-page.css';
+---
+
+<Layout title="Quiz: ¿Son Almas Gemelas?">
+	<main class="quiz-page-container">
+		<div id="quiz-container" class="quiz-container-view">
+			<header class="quiz-header">
+				<div id="progress-bar" class="progress-bar"></div>
+				<a href="/" class="close-quiz-button" title="Cerrar quiz">&times;</a>
+			</header>
+
+			<div id="quiz-body" class="quiz-body">
+				<p id="question-number" class="question-number"></p>
+				<h2 id="question-text" class="question-text"></h2>
+				<p class="options-label">Selecciona solo una</p>
+				<div id="options-container" class="options-container"></div>
+				<div class="quiz-navigation">
+					<button id="back-button" class="nav-button back-button">Atrás</button>
+					<button id="next-button" class="nav-button next-button" disabled>Siguiente</button>
+				</div>
+			</div>
+
+			<!-- ¡NUEVO! Estructura mejorada para la tarjeta de resultados -->
+			<div id="results-body" class="results-body" style="display: none;">
+				<div id="results-icon" class="results-icon"></div>
+				<h2 id="results-title" class="results-title"></h2>
+				<p id="results-text" class="results-text-content"></p>
+				
+				<!-- Contenedor para la lista de recomendaciones -->
+				<ul id="results-recommendations" class="results-recommendations-list"></ul>
+
+				<a href="/" class="nav-button">Volver al inicio</a>
+			</div>
+		</div>
+	</main>
+</Layout>
+
+<script src="../../scripts/main.js"></script>
+<script src="../../scripts/quiz-logic.js"></script>

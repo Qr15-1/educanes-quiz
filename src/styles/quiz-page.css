@@ -1,0 +1,137 @@
+/* src/styles/quiz-page.css (VERSIÓN FINAL CON ANIMACIÓN PREMIUM) */
+
+.quiz-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding: 2rem 1rem; 
+  box-sizing: border-box;
+}
+
+.quiz-container-view {
+  background-color: var(--background-card);
+  border-radius: 28px;
+  padding: 1.75rem;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+.quiz-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem; 
+}
+
+.progress-bar { display: flex; gap: 5px; flex-grow: 1; }
+.progress-segment { height: 5px; background-color: #3d4f6b; border-radius: 2.5px; flex-grow: 1; transition: background-color 0.4s ease; }
+.progress-segment.completed { background-color: #818cf8; }
+.progress-segment.active { background-color: #67e8f9; }
+.close-quiz-button { color: var(--text-secondary); font-size: 2rem; text-decoration: none; line-height: 1; opacity: 0.8; flex-shrink: 0; }
+
+.quiz-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  /* ¡CLAVE! Ocultamos el contenido que se desborda durante la animación */
+  overflow: hidden;
+}
+
+/* --- ANIMACIONES DE DESLIZAMIENTO VERTICAL --- */
+.animating-out {
+  animation: slideUpOut 0.3s ease-in-out forwards;
+}
+.animating-in {
+  animation: slideUpIn 0.4s ease-in-out forwards;
+}
+
+@keyframes slideUpOut {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-20px); opacity: 0; }
+}
+@keyframes slideUpIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* ------------------------------------------- */
+
+.question-number { font-size: 0.7rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.5rem; letter-spacing: 1px; text-transform: uppercase; }
+.question-text { font-size: 1.7rem; font-weight: 700; line-height: 1.35; margin-bottom: 2rem; }
+.options-label { font-size: 0.65rem; color: var(--text-secondary); margin-bottom: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; }
+.options-container { display: flex; flex-direction: column; gap: 0.75rem; }
+.option { display: flex; align-items: center; padding: 0.9rem 1rem; border: 1px solid rgba(128, 128, 128, 0.2); border-radius: 16px; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
+.option .option-text { color: var(--text-color); line-height: 1.4; }
+.option:has(input:checked) { border-color: var(--accent-color-light); background-color: var(--background-hover); }
+.option:hover { border-color: rgba(128, 128, 128, 0.5); }
+.option input[type="radio"] { display: none; }
+.option .option-text::before { content: ''; display: inline-block; width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--text-secondary); margin-right: 1rem; flex-shrink: 0; transition: all 0.2s ease; }
+.option input[type="radio"]:checked + .option-text::before { border-color: var(--accent-color); background-color: var(--accent-color); box-shadow: 0 0 5px var(--accent-color); }
+.quiz-navigation { display: flex; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.5rem; }
+.nav-button { padding: 0.9rem; border-radius: 16px; font-size: 1rem; font-weight: 600; cursor: pointer; flex-grow: 1; text-align: center; transition: all 0.2s ease; }
+.back-button { background-color: transparent; border: none; color: var(--text-secondary); }
+.back-button:hover { color: var(--text-color); }
+.next-button { background-color: var(--background-soft); color: var(--text-secondary); border: none; }
+.next-button:not(:disabled) { background-color: var(--accent-color); color: white; }
+.nav-button:disabled { cursor: not-allowed; opacity: 0.5; }
+.results-body { display: flex; flex-direction: column; justify-content: center; align-items: center; flex-grow: 1; text-align: center; }
+
+/* src/styles/quiz-page.css (CON ESTILOS PARA RESULTADOS) */
+
+/* ... (todo el código anterior es el mismo) ... */
+
+.quiz-navigation { display: flex; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.5rem; }
+.nav-button { padding: 0.9rem; border-radius: 16px; font-size: 1rem; font-weight: 600; cursor: pointer; flex-grow: 1; text-align: center; transition: all 0.2s ease; text-decoration: none; }
+.back-button { background-color: transparent; border: none; color: var(--text-secondary); }
+.back-button:hover { color: var(--text-color); }
+.next-button { background-color: var(--background-soft); color: var(--text-secondary); border: none; }
+.next-button:not(:disabled) { background-color: var(--accent-color); color: white; }
+.nav-button:disabled { cursor: not-allowed; opacity: 0.5; }
+
+.quiz-navigation { display: flex; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.5rem; }
+.nav-button { padding: 0.9rem; border-radius: 16px; font-size: 1rem; font-weight: 600; cursor: pointer; flex-grow: 1; text-align: center; transition: all 0.2s ease; text-decoration: none; }
+.back-button { background-color: transparent; border: none; color: var(--text-secondary); }
+.back-button:hover { color: var(--text-color); }
+.next-button { background-color: var(--background-soft); color: var(--text-secondary); border: none; }
+.next-button:not(:disabled) { background-color: var(--accent-color); color: white; }
+.nav-button:disabled { cursor: not-allowed; opacity: 0.5; }
+
+/* src/styles/quiz-page.css (CON ESTILOS PARA RECOMENDACIONES) */
+
+/* ... (todo el código anterior hasta .results-body es el mismo) ... */
+
+
+/* --- ¡NUEVO! ESTILOS PARA LA TARJETA DE RESULTADOS --- */
+.results-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  text-align: center;
+}
+.results-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+.results-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; }
+.results-text-content { line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.5rem; }
+
+/* Estilos para la lista de recomendaciones */
+.results-recommendations-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+  text-align: left;
+  width: 100%;
+}
+.results-recommendations-list li {
+  background-color: var(--background-hover);
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}

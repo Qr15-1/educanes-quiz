@@ -1,0 +1,66 @@
+---
+// src/pages/index.astro (CON TODOS LOS QUIZZES RESTAURADOS)
+import Layout from '../layouts/Layout.astro';
+import '../styles/inicio.css';
+import '../styles/quiz-list.css';
+import '../styles/form.css';
+import '../styles/modal.css';
+---
+
+<Layout title="Educanes | Quizzes Interactivos">
+	<main>
+		<h1>Conecta y Aprende con tu Perro</h1>
+		
+		<!-- Asegúrate de que este contenedor tiene las 5 tarjetas adentro -->
+		<div class="quiz-container">
+			<div class="quiz-card" data-quiz-title="¿Son Almas Gemelas?">
+				<span class="quiz-icon">🐾</span>
+				<div class="quiz-text"><h3>¿Son Almas Gemelas?</h3><p>Descubre el nivel real de vuestro vínculo afectivo.</p></div>
+			</div>
+			
+			<div class="quiz-card" data-quiz-title="¿Qué Intenta Decirte?">
+				<span class="quiz-icon">🦴</span>
+				<div class="quiz-text"><h3>¿Qué Intenta Decirte?</h3><p>Domina el arte de su lenguaje corporal y sus señales.</p></div>
+			</div>
+			
+			<div class="quiz-card" data-quiz-title="Mitos y Verdades del Plato">
+				<span class="quiz-icon">🥣</span>
+				<div class="quiz-text"><h3>Mitos y Verdades del Plato</h3><p>Separa la ficción de la realidad en su alimentación.</p></div>
+			</div>
+			
+			<div class="quiz-card" data-quiz-title="¿Tu Perro es un Genio?">
+				<span class="quiz-icon">🧠</span>
+				<div class="quiz-text"><h3>¿Tu Perro es un Genio?</h3><p>Pon a prueba su inteligencia y aprende a estimularla.</p></div>
+			</div>
+			
+			<div class="quiz-card" data-quiz-title="El Examen del Súper Dueño">
+				<span class="quiz-icon">🏆</span>
+				<div class="quiz-text"><h3>El Examen del Súper Dueño</h3><p>¿Tienes todo lo necesario para su felicidad y bienestar?</p></div>
+			</div>
+		</div>
+	</main>
+	
+	<!-- El Modal -->
+	<div id="quiz-modal" class="modal-overlay">
+		<div class="modal-content">
+			<div class="modal-icon">🐾</div>
+			<button id="modal-close" class="modal-close-button">&times;</button>
+			<h2>¡Estás a un paso!</h2>
+			<p class="modal-intro">Completa tus datos para empezar el quiz y recibir consejos personalizados.</p>
+			<form id="contact-form" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+				<input type="hidden" name="access_key" value="084442b8-9567-4efc-a6bd-61d62c6f2f2c">
+				<input type="hidden" name="redirect" id="form-redirect-url" value="">
+				<input type="hidden" id="quiz-choice" name="quiz_seleccionado" value="">
+				<div class="form-group"><label for="owner-name">Tu Nombre</label><input type="text" id="owner-name" name="nombre_dueño" required /></div>
+				<div class="form-group"><label for="owner-email">Tu Email</label><input type="email" id="owner-email" name="email_dueño" required /></div>
+				<div class="form-group"><label for="owner-phone">Tu Teléfono (Opcional)</label><input type="tel" id="owner-phone" name="telefono_dueño" /></div>
+				<div class="form-group"><label for="pet-name">Nombre de tu Mascota</label><input type="text" id="pet-name" name="nombre_mascota" required /></div>
+				<div class="form-group"><label for="pet-breed">Raza de tu Mascota</label><input type="text" id="pet-breed" name="raza_mascota" required /></div>
+				<button type="submit" class="submit-button">Empezar Quiz</button>
+			</form>
+		</div>
+	</div>
+</Layout>
+
+<!-- Cargamos el script para que funcionen el modal, el tema y el FAB -->
+<script src="../scripts/main.js"></script>

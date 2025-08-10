@@ -1,0 +1,20 @@
+/* Indicador de slide tipo paginación */
+.slide-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0 8px 0;
+}
+.dot {
+  width: 16px;
+  height: 8px;
+  border-radius: 4px;
+  background: #d1cbe9;
+  transition: background 0.3s, width 0.3s;
+  display: inline-block;
+}
+.dot.active {
+  width: 24px;
+  background: #5a3ec8;
+}

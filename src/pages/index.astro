@@ -1,5 +1,5 @@
 ---
-// src/pages/index.astro (CON TODOS LOS QUIZZES RESTAURADOS)
+// src/pages/index.astro (CON CAMPO PARA SUBIR FOTO)
 import Layout from '../layouts/Layout.astro';
 import '../styles/inicio.css';
 import '../styles/quiz-list.css';
@@ -11,7 +11,6 @@ import '../styles/modal.css';
 	<main>
 		<h1>Conecta y Aprende con tu Perro</h1>
 		
-		<!-- Asegúrate de que este contenedor tiene las 5 tarjetas adentro -->
 		<div class="quiz-container">
 			<div class="quiz-card" data-quiz-title="¿Son Almas Gemelas?">
 				<span class="quiz-icon">🐾</span>
@@ -56,6 +55,13 @@ import '../styles/modal.css';
 				<div class="form-group"><label for="owner-phone">Tu Teléfono (Opcional)</label><input type="tel" id="owner-phone" name="telefono_dueño" /></div>
 				<div class="form-group"><label for="pet-name">Nombre de tu Mascota</label><input type="text" id="pet-name" name="nombre_mascota" required /></div>
 				<div class="form-group"><label for="pet-breed">Raza de tu Mascota</label><input type="text" id="pet-breed" name="raza_mascota" required /></div>
+				
+				<!-- ¡AQUÍ ESTÁ EL CAMBIO! El nuevo campo para la foto -->
+				<div class="form-group">
+                    <label for="pet-photo">Foto de tu Mascota (Opcional)</label>
+                    <input type="file" id="pet-photo" name="foto_mascota" accept="image/*" />
+                </div>
+
 				<button type="submit" class="submit-button">Empezar Quiz</button>
 			</form>
 		</div>

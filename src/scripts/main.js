@@ -1,4 +1,4 @@
-// src/scripts/main.js (VERSIÓN FINAL Y A PRUEBA DE FALLOS)
+// src/scripts/main.js (CON LÓGICA PARA GUARDAR LA FOTO)
 
 // --- MÓDULO PARA EL TEMA (GLOBAL) ---
 function initThemeSwitch() {
@@ -45,8 +45,10 @@ function initIndexPageLogic() {
     const quizChoiceInput = document.getElementById('quiz-choice');
     const ownerNameInput = document.getElementById('owner-name');
     const petNameInput = document.getElementById('pet-name');
+    // --- ¡AQUÍ ESTÁ EL CAMBIO! Capturamos el nuevo input de la foto ---
+    const petPhotoInput = document.getElementById('pet-photo');
     
-    if (!quizCards.length || !closeButton || !form || !ownerNameInput || !petNameInput) return;
+    if (!quizCards.length || !closeButton || !form || !ownerNameInput || !petNameInput || !petPhotoInput) return;
 
     const getQuizUrl = (title) => `/quizzes/${title.toLowerCase().replace(/ /g, '-').replace(/[¿?¡!]/g, '')}`;
     const openModal = (title) => {
@@ -75,22 +77,31 @@ function initIndexPageLogic() {
         localStorage.setItem('educanesFormSubmitted', 'true');
         if (ownerNameInput.value) localStorage.setItem('educanes-ownerName', ownerNameInput.value);
         if (petNameInput.value) localStorage.setItem('educanes-petName', petNameInput.value);
+
+        // --- ¡AQUÍ ESTÁ LA MAGIA! Lógica para convertir y guardar la imagen ---
+        const file = petPhotoInput.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Guardamos la imagen como un string de texto (base64) en el localStorage
+                // Esto nos permitirá recuperarla en la página de resultados
+                localStorage.setItem('educanes-petPhoto', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        } else {
+            // Si el usuario no sube una foto, nos aseguramos de que no haya una antigua guardada
+            localStorage.removeItem('educanes-petPhoto');
+        }
     });
 }
 
 // --- PUNTO DE ENTRADA PRINCIPAL ---
-// Esta función principal se encarga de llamar a todos los módulos.
 function runAllScripts() {
     initThemeSwitch();
     initFabMenu();
     initIndexPageLogic();
 }
 
-// --- ¡LA SOLUCIÓN! EJECUCIÓN A PRUEBA DE FALLOS ---
-
-// 1. Escuchar el evento oficial de Astro para las navegaciones DENTRO del sitio.
+// --- EJECUCIÓN A PRUEBA DE FALLOS ---
 document.addEventListener('astro:page-load', runAllScripts);
-
-// 2. Ejecutar la función UNA VEZ de forma inmediata para la carga inicial de la página.
-// Esto es lo que faltaba y causaba que nada funcionara al principio.
 runAllScripts();

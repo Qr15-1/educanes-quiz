@@ -1,10 +1,10 @@
-// src/scripts/quiz-logic.js (VERSIÓN COMPLETA Y FUNCIONAL)
+// src/scripts/quiz-logic.js (VERSIÓN FINAL Y 100% JAVASCRIPT CORRECTO)
 
 document.addEventListener('DOMContentLoaded', () => {
     const quizContainer = document.getElementById('quiz-container');
     if (!quizContainer) return;
 
-    // --- DATOS DEL QUIZ ---
+    // --- DATOS DEL QUIZ (CON LA NUEVA PREGUNTA) ---
     const quizData = [
       { 
         question: "¿Cuándo llegas a casa, cómo te recibe tu perro?", 
@@ -29,6 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
           { text: "Gime un poco al principio...", trait: 'apego_dudoso' },
           { text: "Llora, ladra o rompe cosas.", trait: 'ansiedad_separacion' }
         ] 
+      },
+      { 
+        question: "Durante los paseos, ¿cómo se comporta con otros perros?", 
+        options: [
+          { text: "Los ignora o los saluda amistosamente.", trait: 'social_bueno' },
+          { text: "Se pone nervioso o ladra a veces.", trait: 'social_reactivo' },
+          { text: "Prefiere evitarlos y se esconde detrás de mí.", trait: 'social_miedoso' }
+        ] 
       }
     ];
 
@@ -43,8 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentQuestionIndex = 0;
     const userAnswers = new Array(quizData.length).fill(null);
 
-    // --- FUNCIÓN PARA RENDERIZAR PREGUNTAS (COMPLETA) ---
+    // --- FUNCIÓN PARA RENDERIZAR PREGUNTAS ---
     function renderQuestion(index) {
+        if (!questionNumberEl || !questionTextEl || !optionsContainer || !progressBar || !nextButton || !backButton) return;
+
         const question = quizData[index];
         questionNumberEl.textContent = `PREGUNTA ${index + 1} DE ${quizData.length}`;
         questionTextEl.textContent = question.question;
@@ -54,16 +64,28 @@ document.addEventListener('DOMContentLoaded', () => {
             const optEl = document.createElement('label');
             optEl.className = 'option';
             optEl.innerHTML = `<input type="radio" name="question-${index}" value="${optionIndex}" /><span class="option-text">${option.text}</span>`;
-            optEl.querySelector('input').addEventListener('change', () => {
-                userAnswers[index] = option.trait;
-                nextButton.disabled = false;
-            });
+            
+            const inputEl = optEl.querySelector('input');
+            if(inputEl) {
+              inputEl.addEventListener('change', () => {
+                  userAnswers[index] = option.trait;
+                  if (nextButton) nextButton.disabled = false;
+              });
+            }
             optionsContainer.appendChild(optEl);
         });
 
         if (userAnswers[index] !== null) {
             const selectedIdx = question.options.findIndex(opt => opt.trait === userAnswers[index]);
-            if (selectedIdx > -1) optionsContainer.querySelector(`input[value="${selectedIdx}"]`).checked = true;
+            if (selectedIdx > -1) {
+              const checkedInput = optionsContainer.querySelector(`input[value="${selectedIdx}"]`);
+              // =======================================================
+              //   LA LÍNEA CORREGIDA A JAVASCRIPT PURO
+              // =======================================================
+              if (checkedInput) {
+                checkedInput.checked = true;
+              }
+            }
         }
 
         nextButton.disabled = userAnswers[index] === null;
@@ -77,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- FUNCIÓN PARA REDIRIGIR A RESULTADOS (COMPLETA) ---
+    // --- FUNCIÓN PARA REDIRIGIR A RESULTADOS ---
     function showResults() {
         const finalTraits = userAnswers.filter(trait => trait !== null);
         const traitsQueryParam = finalTraits.join(',');
@@ -85,23 +107,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- EVENTOS DE NAVEGACIÓN ---
-    nextButton.addEventListener('click', () => {
-        if (currentQuestionIndex < quizData.length - 1) {
-            currentQuestionIndex++;
-            renderQuestion(currentQuestionIndex);
-        } else {
-            showResults();
-        }
-    });
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+          if (currentQuestionIndex < quizData.length - 1) {
+              currentQuestionIndex++;
+              renderQuestion(currentQuestionIndex);
+          } else {
+              showResults();
+          }
+      });
+    }
 
-    backButton.addEventListener('click', () => {
-        if (currentQuestionIndex > 0) {
-            currentQuestionIndex--;
-            renderQuestion(currentQuestionIndex);
-        }
-    });
+    if (backButton) {
+      backButton.addEventListener('click', () => {
+          if (currentQuestionIndex > 0) {
+              currentQuestionIndex--;
+              renderQuestion(currentQuestionIndex);
+          }
+      });
+    }
 
-    // --- ¡LA LÍNEA CLAVE QUE FALTABA! ---
-    // Inicia el quiz por primera vez, dibujando la pregunta 0.
+    // Inicia el quiz por primera vez
     renderQuestion(currentQuestionIndex);
 });

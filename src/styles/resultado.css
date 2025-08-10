@@ -1,104 +1,149 @@
-/* src/styles/resultado.css (DISEÑO PREMIUM) */
+/* src/styles/resultado.css (VERSIÓN FINAL CON TEXTO DE DATOS CURIOSOS CORREGIDO) */
 
-.results-page-container {
-  display: flex;
-  justify-content: center;
-  padding: 5vh 1.5rem; /* Más espacio vertical para respirar */
-  box-sizing: border-box;
+/* --- CONFIGURACIÓN GLOBAL Y RESET --- */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-.results-content {
+.results-profile-page {
+  padding: 1rem 0.5rem;
+  background-color: var(--background-page);
+}
+
+/* --- TARJETA PRINCIPAL DEL PERFIL --- */
+.profile-card {
+  max-width: 370px;
   width: 100%;
-  max-width: 650px; /* Un poco más ancho para el formato de informe */
+  margin: 0 auto;
+  background-color: var(--background-card);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+.profile-image-card {
+  height: 180px;
+}
+.profile-image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-info-card {
+  padding: 1rem 0.5rem 1.2rem 0.5rem;
+  margin-top: -24px;
+  position: relative;
+  z-index: 2;
+  background-color: var(--background-card);
+  border-radius: 18px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
 }
 
-.results-icon {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-}
-
-.results-title {
-  font-size: 2.5rem; /* Un poco más pequeño para elegancia */
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-.results-text-content {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  max-width: 580px; /* Líneas de texto más cómodas de leer */
-  margin-bottom: 3rem;
-}
-
-.divider {
-    width: 100px;
-    height: 4px;
-    background-color: var(--border-color);
-    border-radius: 2px;
-    margin-bottom: 3rem;
-}
-
-.recommendations-title {
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin-bottom: 2.5rem;
-}
-
-.results-recommendations-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 3rem 0;
+/* --- CONFIGURACIÓN DEL SLIDER (SWIPER) --- */
+.swiper {
   width: 100%;
+}
+
+.swiper-slide {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem; /* Espacio entre las tarjetas de consejo */
+  height: auto;
+  align-items: center;
+}
+
+/* --- ESTILOS PARA LA PAGINACIÓN (PUNTOS Y BARRAS) --- */
+.swiper-pagination {
+    position: relative;
+    width: auto !important;
+    bottom: auto !important;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.swiper-pagination-bullet { width: 8px; height: 8px; background-color: var(--border-color); border-radius: 50%; opacity: 0.5; transition: all 0.3s ease; }
+.swiper-pagination-bullet-active { width: 24px; height: 8px; background-color: var(--accent-color); opacity: 1; border-radius: 5px; }
+
+
+/* --- ESTILOS DEL CONTENIDO DENTRO DE LOS SLIDES --- */
+.pet-name { font-size: 2.2rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.25rem; }
+.owner-intro { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem; }
+.info-blocks { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
+.info-block { flex-grow: 1; background-color: var(--background-hover); padding: 0.75rem 1rem; border-radius: 12px; }
+.info-label { display: block; font-size: 0.75rem; color: var(--text-secondary); }
+.info-value { display: block; font-size: 1rem; font-weight: 600; color: var(--text-color); }
+.section-title { font-size: 1.2rem; font-weight: 600; color: var(--text-color); margin-bottom: 1rem; }
+
+.analysis-text {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  max-width: 90%;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.recommendations-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.recommendation-item {
+  padding: 1rem;
+  background-color: var(--background-hover);
+  border-radius: 12px;
+  overflow-wrap: break-word;
+  hyphens: auto;
   text-align: left;
 }
+.recommendation-item strong { display: block; margin-bottom: 0.25rem; color: var(--text-color); }
 
-/* El nuevo estilo de "tarjeta" para cada consejo */
-.results-recommendations-list li {
-  background-color: var(--background-card);
-  padding: 1.5rem;
-  border-radius: 20px;
-  border: 1px solid var(--border-color);
-  font-size: 1rem;
+/* LA SOLUCIÓN ESTÁ AQUÍ */
+.curious-fact-item {
+  padding: 1rem;
+  background-color: var(--background-hover);
+  border-radius: 12px;
+  border-left: 4px solid var(--accent-color);
+  font-style: italic;
+  color: var(--text-secondary);
   line-height: 1.6;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.results-recommendations-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.results-recommendations-list li strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--accent-color-light); /* Un color de acento para el título */
-}
-
-.nav-button {
-  padding: 1rem 2.5rem;
-  border-radius: 50px; /* Botón tipo "píldora" */
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
+  overflow-wrap: break-word;
+  hyphens: auto;
   text-align: center;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  background-color: var(--accent-color);
-  color: white;
-  margin-top: 1rem;
+  /* LÍNEAS AÑADIDAS PARA CORREGIR EL ANCHO: */
+  max-width: 90%;
+  margin: 0 auto;
 }
-.nav-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 20px rgba(var(--accent-color-rgb), 0.3);
+
+/* --- BOTÓN DE ACCIÓN --- */
+.cta-container { text-align: center; margin-top: auto; padding-top: 1rem; }
+.nav-button { display: inline-block; width: auto; padding: 1rem 2.5rem; border-radius: 16px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; text-decoration: none; background-color: #FFC107; color: #3C2F0E; border: none; }
+.nav-button:hover { transform: scale(1.05); }
+
+
+/* --- AJUSTES PARA MÓVILES (MEDIA QUERIES) --- */
+@media (max-width: 480px) {
+  .profile-card {
+    width: 95vw;
+    border-radius: 14px;
+  }
+  .profile-image-card {
+    height: 270px;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    overflow: hidden;
+  }
+  .profile-info-card {
+    font-size: 0.97rem;
+  }
+  .results-profile-page {
+    padding: 0.5rem 0.1rem;
+  }
 }

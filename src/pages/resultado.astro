@@ -1,29 +1,57 @@
 ---
-// src/pages/resultado.astro (DISEÑO PREMIUM)
+// src/pages/resultado.astro (VERSIÓN FINAL CON LA RUTA DEL SCRIPT CORREGIDA)
 import Layout from '../layouts/Layout.astro';
-import '../styles/resultado.css'; // ¡Un nuevo archivo de estilos!
+import 'swiper/css';
+import 'swiper/css/pagination';
+import '../styles/resultado.css';
+import '../styles/slide-indicator.css';
 ---
-
-<Layout title="Tu Resultado Personalizado">
-  <main class="results-page-container">
-    <div class="results-content">
-      
-      <!-- Estos elementos serán rellenados por nuestro nuevo script -->
-      <div id="results-icon" class="results-icon"></div>
-      <h1 id="results-title" class="results-title"></h1>
-      <p id="results-text" class="results-text-content"></p>
-      
-      <!-- Un divisor visual para separar la introducción de los consejos -->
-      <div class="divider"></div>
-
-      <h2 class="recommendations-title">Tus consejos personalizados:</h2>
-      <ul id="results-recommendations" class="results-recommendations-list"></ul>
-
-      <a href="/" class="nav-button">Hacer otro quiz</a>
-
+<Layout title="El Perfil de Vuestro Vínculo">
+  <main class="results-profile-page">
+    <div class="profile-card">
+      <div class="profile-image-card">
+        <img id="pet-profile-photo" src="/placeholder-dog.svg" alt="Foto de la mascota" />
+      </div>
+      <div class="slide-indicator" id="slide-indicator">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+      <div class="profile-info-card">
+        <div class="swiper">
+          <div class="swiper-pagination"></div>
+          <div class="swiper-wrapper">
+            <!-- Slide 1: Análisis -->
+            <div class="swiper-slide">
+              <h1 id="pet-name-title" class="pet-name"></h1>
+              <p id="owner-intro" class="owner-intro"></p>
+              <div class="info-blocks">
+                <div class="info-block">
+                    <span class="info-label">Arquetipo</span>
+                    <span id="archetype-title" class="info-value"></span>
+                </div>
+              </div>
+              <p id="analysis-text" class="analysis-text"></p>
+            </div>
+            <!-- Slide 2: Plan de Acción -->
+            <div class="swiper-slide">
+              <h2 class="section-title">Tu Plan de Acción</h2>
+              <div id="recommendations-container" class="recommendations-container"></div>
+            </div>
+            <!-- Slide 3: Datos Curiosos -->
+            <div class="swiper-slide">
+              <h2 class="section-title">Datos Curiosos</h2>
+              <div id="curious-facts-container" class="recommendations-container"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cta-container">
+            <a href="/" class="nav-button">Hacer otro quiz</a>
+        </div>
+      </div>
     </div>
   </main>
 </Layout>
 
-<!-- Cargamos el script dedicado solo a esta página -->
-<script src="../scripts/resultado-logic.js"></script>
+<!-- LA LÍNEA CRÍTICA CORREGIDA: La ruta ahora es relativa -->
+<script  src="../scripts/resultado-logic.js"></script>
